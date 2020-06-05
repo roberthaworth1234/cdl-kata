@@ -23,18 +23,20 @@ exports.calculateCost = (array, pricingStructure) => {
       }
     });
     Object.keys(specialPriceItems).forEach(item => {
+      let remainder = totalSpecials[item] % specialPriceItems[item][0];
       if (totalSpecials[item] === 1) {
         totalCost += pricingStructure[item].unitPrice;
       }
-      if (totalSpecials[item] % specialPriceItems[item][0] === 0) {
+      if (remainder === 0) {
         totalCost += specialPriceItems[item][1];
       }
-      if (
-        totalSpecials[item] % specialPriceItems[item][0] !== 0 &&
-        totalSpecials[item] > 1
-      ) {
+      if (remainder !== 0 && totalSpecials[item] > 1) {
+        const numberOfSpecials = Math.floor(
+          totalSpecials[item] / +specialPriceItems[item][0]
+        );
         totalCost +=
-          pricingStructure[item].unitPrice + specialPriceItems[item][1];
+          pricingStructure[item].unitPrice * remainder +
+          specialPriceItems[item][1] * numberOfSpecials;
       }
     });
     return totalCost;

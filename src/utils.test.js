@@ -41,4 +41,11 @@ describe("calculateCost", () => {
     const input = calculateCost(["A", "B", "B", "B", "C"], refPricingStructure);
     expect(input).toEqual(145);
   });
+  it("will take an array containing multipe items, with excessive duplicate numbers of each item", () => {
+    const input = calculateCost(
+      ["A", "A", "A", "A", "A", "A", "A", "B", "B", "B", "B", "B", "C", "C"],
+      refPricingStructure
+    );
+    expect(input).toEqual(470);
+  });
 });
