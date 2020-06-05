@@ -12,4 +12,22 @@ describe("calculateCost", () => {
     expect(input).toEqual(refPricingStructure["A"].unitPrice);
     expect(input).toEqual(50);
   });
+  it("will take an array containing multiple unique items and the pricing structure object and return the correct price", () => {
+    const input = calculateCost(["A", "B", "C"], refPricingStructure);
+    expect(input).toEqual(
+      refPricingStructure["A"].unitPrice +
+        refPricingStructure["B"].unitPrice +
+        refPricingStructure["C"].unitPrice
+    );
+    expect(input).toEqual(100);
+  });
+  it("will take an array containing multiple items, one item which triggers the special price cost.  And will produce the correct calculated cost", () => {
+    const input = calculateCost(["A", "B", "B", "C"], refPricingStructure);
+    expect(input).toEqual(
+      refPricingStructure["A"].unitPrice +
+        refPricingStructure["B"].specialPrice[2] +
+        refPricingStructure["C"].unitPrice
+    );
+    expect(input).toEqual(115);
+  });
 });
