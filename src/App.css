@@ -11,7 +11,9 @@ h3 {
   text-align: center;
   height: 80px;
 }
-
+.quantity {
+  text-align: center;
+}
 .savings {
   text-align: center;
   color: red;

@@ -11,6 +11,19 @@ export default function IndividualItem({ item, handleClick, shoppingBasket }) {
           alt="apple"
           src={item.img}
         />
+        <p className="quantity">
+          Quantity:{" "}
+          {/* shopping basket mapped to select only that specific element in array and reduced to accumulate quantity */}
+          {!shoppingBasket.length
+            ? 0
+            : shoppingBasket
+                .map(element => {
+                  return item.productCode === element ? +1 : 0;
+                })
+                .reduce((acc, curr) => {
+                  return acc + curr;
+                })}
+        </p>
         <Button
           className="my-1"
           onClick={() => {

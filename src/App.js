@@ -65,6 +65,7 @@ export default class App extends Component {
                 return (
                   <Col key={item.productCode} lg="3" md="6">
                     <IndividualItem
+                      shoppingBasket={this.state.shoppingBasket}
                       handleClick={this.handleClick}
                       item={item}
                     />
