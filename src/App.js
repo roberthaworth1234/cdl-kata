@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import IndividualItem from "./components/IndividualItem";
-// import pricingStructure from "./assets/pricingStructure";
+import { refPricingStructure } from "./assets/pricingStructure";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col } from "react-bootstrap";
 import "./App.css";
+import { calculateCost } from "./utils";
 
 export default class App extends Component {
   state = {
-    shoppingBasket: [],
+    shoppingBasket: ["A", "B", "D", "C", "B"],
     itemsList: [
       {
         type: "Pink Lady Apple",
@@ -41,15 +42,35 @@ export default class App extends Component {
         <section className="selection">
           <Container>
             <Row>
-              {this.state.itemsList.map((item, index) => {
+              {this.state.itemsList.map(item => {
                 return (
-                  <Col lg="3" md="6">
+                  <Col key={item.productCode} lg="3" md="6">
                     <IndividualItem item={item} />
                   </Col>
                 );
               })}
             </Row>
           </Container>
+        </section>
+        <section className="d-flex flex-column justify-content-center mt-5">
+          <h2>Shopping Basket</h2>
+          <div className="mb-5 underline"></div>
+          {this.state.shoppingBasket.map((item, index) => {
+            return (
+              <Container key={index} className="basketContainer">
+                {this.state.itemsList.map((product, index) => {
+                  return product.productCode === item ? (
+                    <p key={index}> {product.type}</p>
+                  ) : null;
+                })}
+                <p>Price: {refPricingStructure[item].unitPrice}</p>
+              </Container>
+            );
+          })}
+          <p className="total">
+            Total :{" "}
+            {calculateCost(this.state.shoppingBasket, refPricingStructure)}
+          </p>
         </section>
       </div>
     );

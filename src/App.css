@@ -6,6 +6,9 @@ header {
 
 h2 {
   text-align: center;
+}
+h3 {
+  text-align: center;
   height: 80px;
 }
 
@@ -17,4 +20,12 @@ h2 {
 
 .img {
   height: 100px;
+}
+.total {
+  text-align: center;
+}
+
+.basketContainer {
+  display: flex;
+  justify-content: space-between;
 }
