@@ -12,6 +12,11 @@ h3 {
   height: 80px;
 }
 
+.savings {
+  text-align: center;
+  color: red;
+}
+
 .underline {
   width: 50px;
   border: lightblue 1px solid;
@@ -28,4 +33,9 @@ h3 {
 .basketContainer {
   display: flex;
   justify-content: space-between;
+}
+
+button {
+  align-self: center;
+  width: 100px;
 }

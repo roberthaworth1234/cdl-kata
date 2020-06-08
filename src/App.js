@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import IndividualItem from "./components/IndividualItem";
-import { refPricingStructure } from "./assets/pricingStructure";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col } from "react-bootstrap";
+
+import IndividualItem from "./components/IndividualItem";
+import ShoppingBasket from "./components/ShoppingBasket";
+
 import "./App.css";
-import { calculateCost } from "./utils";
 
 export default class App extends Component {
   state = {
@@ -32,7 +34,9 @@ export default class App extends Component {
       }
     ]
   };
+
   handleClick = (direction, productCode) => {
+    /*ternary based on the direction of clicked. if -1 clicked the filter will remove one item from basket array that matches product code and set the new shopping basket in state. any other use of handle click function adds product to the basket.*/
     let count = 1;
     return direction === -1
       ? this.setState({
@@ -46,11 +50,12 @@ export default class App extends Component {
           shoppingBasket: [...this.state.shoppingBasket, productCode]
         });
   };
+
   render() {
     return (
       <div className="App">
         <header>
-          <h1 className="mt-3">Adam's Apple</h1>
+          <h1 className="mt-3">Adam's Apples</h1>
           <div className="mb-5 underline"></div>
         </header>
         <section className="selection">
@@ -69,26 +74,14 @@ export default class App extends Component {
             </Row>
           </Container>
         </section>
-        <section className="d-flex flex-column justify-content-center mt-5">
-          <h2>Shopping Basket</h2>
-          <div className="mb-5 underline"></div>
-          {this.state.shoppingBasket.map((item, index) => {
-            return (
-              <Container key={index} className="basketContainer">
-                {this.state.itemsList.map((product, index) => {
-                  return product.productCode === item ? (
-                    <p key={index}> {product.type}</p>
-                  ) : null;
-                })}
-                <p>Price: {refPricingStructure[item].unitPrice}</p>
-              </Container>
-            );
-          })}
-          <p className="total">
-            Total :{" "}
-            {calculateCost(this.state.shoppingBasket, refPricingStructure)}
-          </p>
-        </section>
+        {this.state.shoppingBasket.length ? (
+          <section className="d-flex flex-column justify-content-center mt-5">
+            <ShoppingBasket
+              shoppingBasket={this.state.shoppingBasket}
+              itemsList={this.state.itemsList}
+            />
+          </section>
+        ) : null}
       </div>
     );
   }

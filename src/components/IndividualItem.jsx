@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 
-export default function IndividualItem({ item, handleClick }) {
+export default function IndividualItem({ item, handleClick, shoppingBasket }) {
   return (
     <div className={"item " + item.productCode}>
       <h3>{item.type}</h3>
