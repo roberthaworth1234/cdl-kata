@@ -41,9 +41,33 @@ describe("calculateCost", () => {
     const input = calculateCost(["A", "B", "B", "B", "C"], refPricingStructure);
     expect(input).toEqual(145);
   });
-  it("will take an array containing multipe items, with excessive duplicate numbers of each item", () => {
+  it("will take an array containing multipe items, with excessive duplicate numbers of each item, and return the correct total cost", () => {
     const input = calculateCost(
       ["A", "A", "A", "A", "A", "A", "A", "B", "B", "B", "B", "B", "C", "C"],
+      refPricingStructure
+    );
+    expect(input).toEqual(470);
+  });
+  it("will take an array containing multipe items. A's equalling the required special target price and B's with a remainder. and return the correct total cost", () => {
+    const input = calculateCost(
+      [
+        "A",
+        "A",
+        "A",
+        "A",
+        "A",
+        "A",
+        "B",
+        "B",
+        "B",
+        "B",
+        "B",
+        "C",
+        "C",
+        "C",
+        "D",
+        "D"
+      ],
       refPricingStructure
     );
     expect(input).toEqual(470);

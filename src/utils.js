@@ -22,15 +22,19 @@ exports.calculateCost = (array, pricingStructure) => {
         totalCost += pricingStructure[item].unitPrice;
       }
     });
+    // Next forEach checks if special priced item appears only once and adds single unit price to the total cost.
     Object.keys(specialPriceItems).forEach(item => {
       let remainder = totalSpecials[item] % specialPriceItems[item][0];
       if (totalSpecials[item] === 1) {
         totalCost += pricingStructure[item].unitPrice;
       }
-      if (remainder === 0) {
-        totalCost += specialPriceItems[item][1];
+      // checks if no remainder betweeen number of special items and how many times the special price is triggered. Multiply special price by how many times triggers and add to total cost.
+      else if (remainder === 0) {
+        let factor = totalSpecials[item] / specialPriceItems[item][0];
+        totalCost += specialPriceItems[item][1] * factor;
       }
-      if (remainder !== 0 && totalSpecials[item] > 1) {
+      // checks the remainder of special items.  adds unit priced of remainder and the number of triggered special priced items.
+      else if (remainder !== 0 && totalSpecials[item] > 1) {
         const numberOfSpecials = Math.floor(
           totalSpecials[item] / +specialPriceItems[item][0]
         );
