@@ -8,7 +8,7 @@ import { calculateCost } from "./utils";
 
 export default class App extends Component {
   state = {
-    shoppingBasket: ["A", "B", "D", "C", "B"],
+    shoppingBasket: [],
     itemsList: [
       {
         type: "Pink Lady Apple",
@@ -23,14 +23,28 @@ export default class App extends Component {
       {
         type: "Valencia Orange",
         productCode: "C",
-        img: require("./assets/Images/Banana.jpg")
+        img: require("./assets/Images/Orange.jpg")
       },
       {
         type: "Fair Trade Banana",
         productCode: "D",
-        img: require("./assets/Images/Orange.jpg")
+        img: require("./assets/Images/Banana.jpg")
       }
     ]
+  };
+  handleClick = (direction, productCode) => {
+    let count = 1;
+    return direction === -1
+      ? this.setState({
+          shoppingBasket: this.state.shoppingBasket.filter(item => {
+            return item === productCode && count === 1
+              ? count-- && item !== productCode
+              : item;
+          })
+        })
+      : this.setState({
+          shoppingBasket: [...this.state.shoppingBasket, productCode]
+        });
   };
   render() {
     return (
@@ -45,7 +59,10 @@ export default class App extends Component {
               {this.state.itemsList.map(item => {
                 return (
                   <Col key={item.productCode} lg="3" md="6">
-                    <IndividualItem item={item} />
+                    <IndividualItem
+                      handleClick={this.handleClick}
+                      item={item}
+                    />
                   </Col>
                 );
               })}

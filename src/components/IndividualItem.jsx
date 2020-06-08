@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 
-export default function IndividualItem({ item }) {
+export default function IndividualItem({ item, handleClick }) {
   return (
     <div className={"item " + item.productCode}>
       <h3>{item.type}</h3>
@@ -11,8 +11,21 @@ export default function IndividualItem({ item }) {
           alt="apple"
           src={item.img}
         />
-        <Button className="my-1">-</Button>
-        <Button>+</Button>
+        <Button
+          className="my-1"
+          onClick={() => {
+            handleClick(-1, item.productCode);
+          }}
+        >
+          -
+        </Button>
+        <Button
+          onClick={() => {
+            handleClick(+1, item.productCode);
+          }}
+        >
+          +
+        </Button>
       </div>
     </div>
   );
