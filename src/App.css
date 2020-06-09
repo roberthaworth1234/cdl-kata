@@ -34,12 +34,15 @@ button {
 
 /*Shopping basket and total below*/
 .savings {
-  text-align: center;
+  text-align: end;
   color: red;
 }
-
+.sub-total {
+  text-align: end;
+}
 .total {
-  text-align: center;
+  font-weight: bold;
+  text-align: end;
 }
 
 .basketItem {

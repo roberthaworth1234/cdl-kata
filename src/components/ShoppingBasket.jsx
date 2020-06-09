@@ -26,16 +26,20 @@ export default function ShoppingBasket({
         {basketFunc(shoppingBasket, itemsList, handleRemove)}
       </Container>
       <div className="mb-2 underline w-50"></div>
-      <span className="total">Sub-Total : £{(subTotal / 100).toFixed(2)}</span>
-      {subTotal > calculatedCost ? (
-        <span className="savings my-1">
-          Your total savings today is £
-          {((subTotal - calculatedCost) / 100).toFixed(2)}
+      <Container className="d-flex flex-column">
+        <span className="sub-total">
+          Sub-Total : £{(subTotal / 100).toFixed(2)}
         </span>
-      ) : null}
-      <span className="total mt-1">
-        Total : £{(calculatedCost / 100).toFixed(2)}
-      </span>
+        {subTotal > calculatedCost ? (
+          <span className="savings my-1">
+            Your total savings today £
+            {((subTotal - calculatedCost) / 100).toFixed(2)}
+          </span>
+        ) : null}
+        <span className="total my-2">
+          Total : £{(calculatedCost / 100).toFixed(2)}
+        </span>
+      </Container>
     </>
   );
 }

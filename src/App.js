@@ -57,8 +57,11 @@ export default class App extends Component {
   };
 
   updateBasket = (value, productCode) => {
-    //Input amount from individual item input form and updates the backet
-    const newArr = this.state.shoppingBasket;
+    //Input amount from individual item input form and updates the basket
+
+    const newArr = this.state.shoppingBasket.filter(item => {
+      return item !== productCode;
+    });
     for (let i = 0; i < value; i++) {
       newArr.push(productCode);
     }
