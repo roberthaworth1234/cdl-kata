@@ -44,3 +44,23 @@ exports.calculateCost = (array, pricingStructure) => {
     return totalCost;
   }
 };
+
+exports.tallyOccurences = (shoppingBasket, itemsList) => {
+  if (!shoppingBasket.length) return [];
+  let a = [],
+    b = [],
+    prev;
+
+  shoppingBasket.sort();
+  for (var i = 0; i < shoppingBasket.length; i++) {
+    if (shoppingBasket[i] !== prev) {
+      a.push(shoppingBasket[i]);
+      b.push(1);
+    } else {
+      b[b.length - 1]++;
+    }
+    prev = shoppingBasket[i];
+  }
+
+  return [a, b];
+};

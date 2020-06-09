@@ -33,7 +33,7 @@ export default function IndividualItem({ item, handleClick, shoppingBasket }) {
           -
         </Button>
         <Button
-          className="my-1"
+          className="mb-4"
           onClick={() => {
             handleClick(+1, item.productCode);
           }}

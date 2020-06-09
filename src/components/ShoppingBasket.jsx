@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import { refPricingStructure } from "../assets/pricingStructure";
-import { calculateCost } from "../utils";
+import { calculateCost, tallyOccurences } from "../utils";
 
 export default function ShoppingBasket({ shoppingBasket, itemsList }) {
   const calculatedCost = calculateCost(shoppingBasket, refPricingStructure);
@@ -18,18 +18,7 @@ export default function ShoppingBasket({ shoppingBasket, itemsList }) {
     <>
       <h2>Shopping Basket</h2>
       <div className="mb-5 underline"></div>
-      <Container>
-        {shoppingBasket.map((item, index) => {
-          return itemsList.map((product, index) => {
-            return product.productCode === item ? (
-              <ul key={index} className="basketItem">
-                <li> {product.type}</li>
-                <li>Price: {refPricingStructure[item].unitPrice}p</li>
-              </ul>
-            ) : null;
-          });
-        })}
-      </Container>
+      <Container>{basketFunc(shoppingBasket, itemsList)}</Container>
       <div className="mb-2 underline w-50"></div>
       <span className="total">Sub-Total : £{(subTotal / 100).toFixed(2)}</span>
       {subTotal > calculatedCost ? (
@@ -44,3 +33,27 @@ export default function ShoppingBasket({ shoppingBasket, itemsList }) {
     </>
   );
 }
+
+const basketFunc = (shoppingBasket, itemsList) => {
+  const occurences = tallyOccurences(shoppingBasket, itemsList);
+  console.log(occurences);
+  return occurences[0].map((item, i) => {
+    return itemsList.map((product, index) => {
+      return product.productCode === item ? (
+        <ul key={index} className="basketItem">
+          <li>
+            {" "}
+            {product.type} x {occurences[1][i]}
+          </li>
+          <li>
+            Price: £{" "}
+            {(
+              (refPricingStructure[item].unitPrice * occurences[1][i]) /
+              100
+            ).toFixed(2)}
+          </li>
+        </ul>
+      ) : null;
+    });
+  });
+};

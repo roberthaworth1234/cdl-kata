@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom/extend-expect";
 const { refPricingStructure } = require("./assets/pricingStructure");
-const { calculateCost } = require("./utils");
+const { calculateCost, tallyOccurences } = require("./utils");
 
 describe("calculateCost", () => {
   it("will take an empty array and return zero", () => {
@@ -71,5 +71,53 @@ describe("calculateCost", () => {
       refPricingStructure
     );
     expect(input).toEqual(470);
+  });
+});
+
+const itemsList = [
+  {
+    type: "Pink Lady Apple",
+    productCode: "A",
+    img: require("./assets/Images/PinkLady.jpg"),
+    alt: "A Pink Lady Apple"
+  },
+  {
+    type: "Braeburn",
+    productCode: "B",
+    img: require("./assets/Images/Braeburn.jpg"),
+    alt: "A Braeburn Apple"
+  },
+  {
+    type: "Valencia Orange",
+    productCode: "C",
+    img: require("./assets/Images/Orange.jpg"),
+    alt: "A Valencia Orange"
+  },
+  {
+    type: "Fair Trade Banana",
+    productCode: "D",
+    img: require("./assets/Images/Banana.jpg"),
+    alt: "A Fair Trade Banana"
+  }
+];
+
+describe("tallyOccurences", () => {
+  it("will take an empty basket and items and return an empty array", () => {
+    const input = tallyOccurences([], itemsList);
+    expect(input).toEqual([]);
+  });
+  it("will take a basket containing 1 item and itemsList and return array containing the item and an array containing 1", () => {
+    const input = tallyOccurences(["A"], itemsList);
+    expect(input).toEqual([["A"], [1]]);
+  });
+  it("will take a basket containing 1 item and itemsList and return array containing the item and an array containing the number of each item", () => {
+    const input = tallyOccurences(
+      ["A", "B", "A", "B", "C", "D", "C", "A"],
+      itemsList
+    );
+    expect(input).toEqual([
+      ["A", "B", "C", "D"],
+      [3, 2, 2, 1]
+    ]);
   });
 });
