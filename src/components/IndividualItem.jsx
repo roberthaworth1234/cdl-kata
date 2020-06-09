@@ -8,22 +8,22 @@ export default function IndividualItem({ item, handleClick, shoppingBasket }) {
       <div className="d-flex flex-column justify-content-center">
         <img
           className="img align-self-center my-4"
-          alt="apple"
+          alt={item.alt}
           src={item.img}
         />
-        <p className="quantity">
+        <span className="quantity">
           Quantity:{" "}
-          {/* shopping basket mapped to select only that specific element in array and reduced to accumulate quantity */}
+          {/* shopping basket mapped to select only that specific element in array and reduced to accumulate the quantity */}
           {!shoppingBasket.length
             ? 0
             : shoppingBasket
                 .map(element => {
-                  return item.productCode === element ? +1 : 0;
+                  return item.productCode === element ? 1 : 0;
                 })
                 .reduce((acc, curr) => {
                   return acc + curr;
                 })}
-        </p>
+        </span>
         <Button
           className="my-1"
           onClick={() => {
@@ -33,6 +33,7 @@ export default function IndividualItem({ item, handleClick, shoppingBasket }) {
           -
         </Button>
         <Button
+          className="my-1"
           onClick={() => {
             handleClick(+1, item.productCode);
           }}

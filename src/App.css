@@ -1,43 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto:wght@500&display=swap");
+
 header {
   display: flex;
   flex-direction: column;
   text-align: center;
 }
-
-h2 {
-  text-align: center;
-}
-h3 {
-  text-align: center;
-  height: 80px;
-}
-.quantity {
-  text-align: center;
-}
-.savings {
-  text-align: center;
-  color: red;
-}
-
 .underline {
   width: 50px;
   border: lightblue 1px solid;
   align-self: center;
 }
 
+/* Items Selections and buttons */
+h2,
+.quantity {
+  font-family: "Roboto";
+  text-align: center;
+}
+h3 {
+  font-family: "Roboto";
+  text-align: center;
+  height: 80px;
+}
+button {
+  align-self: center;
+  width: 100px;
+}
+
 .img {
   height: 100px;
 }
+
+/*Shopping basket and total below*/
+.savings {
+  text-align: center;
+  color: red;
+}
+
 .total {
   text-align: center;
 }
 
-.basketContainer {
+.basketItem {
   display: flex;
   justify-content: space-between;
 }
 
-button {
-  align-self: center;
-  width: 100px;
+ul {
+  list-style-type: none;
+  padding: 0px;
+  margin-bottom: 8px;
 }
