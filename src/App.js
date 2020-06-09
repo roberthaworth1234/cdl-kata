@@ -55,6 +55,23 @@ export default class App extends Component {
         });
   };
 
+  updateBasket = (value, productCode) => {
+    //Input amount from individual item input form and updates the backet
+    const newArr = this.state.shoppingBasket;
+    for (let i = 0; i < value; i++) {
+      newArr.push(productCode);
+    }
+    this.setState({ shoppingBasket: newArr });
+  };
+
+  handleRemove = productCode => {
+    const newBasket = this.state.shoppingBasket.filter(item => {
+      return item !== productCode;
+    });
+    // console.log(newBasket, productCode);
+    this.setState({ shoppingBasket: newBasket });
+  };
+
   render() {
     return (
       <div className="App">
@@ -69,6 +86,7 @@ export default class App extends Component {
                 return (
                   <Col key={item.productCode} lg="3" md="6">
                     <IndividualItem
+                      updateBasket={this.updateBasket}
                       shoppingBasket={this.state.shoppingBasket}
                       handleClick={this.handleClick}
                       item={item}
@@ -82,6 +100,7 @@ export default class App extends Component {
         {this.state.shoppingBasket.length ? (
           <section className="d-flex flex-column justify-content-center mt-5">
             <ShoppingBasket
+              handleRemove={this.handleRemove}
               shoppingBasket={this.state.shoppingBasket}
               itemsList={this.state.itemsList}
             />
