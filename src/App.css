@@ -13,6 +13,7 @@ header {
 
 /* Items Selections and buttons */
 h2,
+form,
 .quantity {
   font-family: "Roboto";
   text-align: center;
@@ -20,7 +21,7 @@ h2,
 h3 {
   font-family: "Roboto";
   text-align: center;
-  height: 80px;
+  height: 50px;
 }
 button {
   align-self: center;
@@ -50,4 +51,9 @@ ul {
   list-style-type: none;
   padding: 0px;
   margin-bottom: 8px;
+}
+.removeBtn {
+  padding: 1px;
+  position: absolute;
+  right: 25%;
 }

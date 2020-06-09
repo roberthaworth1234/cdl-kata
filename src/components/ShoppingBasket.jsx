@@ -51,20 +51,22 @@ const basketFunc = (shoppingBasket, itemsList, handleRemove) => {
             {" "}
             {product.type} x {occurences[1][i]}
           </li>
-          <li>
-            Price: £{" "}
-            {(
-              (refPricingStructure[item].unitPrice * occurences[1][i]) /
-              100
-            ).toFixed(2)}
-          </li>
           <Button
+            className="removeBtn"
+            variant="info"
             onClick={() => {
               handleRemove(product.productCode);
             }}
           >
             X
           </Button>
+          <li>
+            £{" "}
+            {(
+              (refPricingStructure[item].unitPrice * occurences[1][i]) /
+              100
+            ).toFixed(2)}
+          </li>
         </ul>
       ) : null;
     });

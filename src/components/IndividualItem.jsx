@@ -6,20 +6,25 @@ export default class IndividualItem extends Component {
     value: 0
   };
 
-  handleChange(event) {
+  handleChange(event, arg) {
     this.setState({ value: event });
   }
 
   handleSubmit(event) {
     event.preventDefault();
     this.props.updateBasket(this.state.value, this.props.item.productCode);
-    this.setState({ value: 0 });
   }
+
+  handleValue = arg => {
+    this.setState(currentState => {
+      return { value: +currentState.value + arg };
+    });
+  };
 
   render() {
     const { item, handleClick } = this.props;
     return (
-      <div className={"item " + item.productCode}>
+      <div className={"mt-5 item " + item.productCode}>
         <h3>{item.type}</h3>
         <div className="d-flex flex-column justify-content-center">
           <img
@@ -30,16 +35,16 @@ export default class IndividualItem extends Component {
 
           <Button
             className="my-1"
-            onClick={() => {
-              handleClick(-1, item.productCode);
+            onClick={e => {
+              handleClick(-1, item.productCode, this.handleValue);
             }}
           >
             -
           </Button>
           <Button
             className="mb-4"
-            onClick={() => {
-              handleClick(+1, item.productCode);
+            onClick={e => {
+              handleClick(+1, item.productCode, this.handleValue);
             }}
           >
             +
@@ -52,7 +57,7 @@ export default class IndividualItem extends Component {
             <label>
               Set Quantity :
               <input
-                className="w-25"
+                className="w-25 align-items-center"
                 type="number"
                 value={this.state.value}
                 onChange={e => {
