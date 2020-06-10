@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom/extend-expect";
-const { refPricingStructure } = require("./assets/pricingStructure");
-const { calculateCost, tallyOccurences } = require("./utils");
+const { refPricingStructure } = require("../assets/pricingStructure");
+const { calculateCost, tallyOccurences } = require("../assets/utils");
 
 describe("calculateCost", () => {
   it("will take an empty array and return zero", () => {
@@ -78,25 +78,25 @@ const itemsList = [
   {
     type: "Pink Lady Apple",
     productCode: "A",
-    img: require("./assets/Images/PinkLady.jpg"),
+    img: require("../assets/Images/PinkLady.jpg"),
     alt: "A Pink Lady Apple"
   },
   {
     type: "Braeburn",
     productCode: "B",
-    img: require("./assets/Images/Braeburn.jpg"),
+    img: require("../assets/Images/Braeburn.jpg"),
     alt: "A Braeburn Apple"
   },
   {
     type: "Valencia Orange",
     productCode: "C",
-    img: require("./assets/Images/Orange.jpg"),
+    img: require("../assets/Images/Orange.jpg"),
     alt: "A Valencia Orange"
   },
   {
     type: "Fair Trade Banana",
     productCode: "D",
-    img: require("./assets/Images/Banana.jpg"),
+    img: require("../assets/Images/Banana.jpg"),
     alt: "A Fair Trade Banana"
   }
 ];

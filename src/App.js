@@ -39,9 +39,9 @@ export default class App extends Component {
     ]
   };
 
-  handleClick = (direction, productCode, handleValue) => {
+  handleClick = (direction, productCode, handleInputValue) => {
     /*ternary based on the direction of clicked. if -1 clicked the filter will remove one item from basket array that matches product code and set the new shopping basket in state. any other use of handle click function adds product to the basket.*/
-    handleValue(direction);
+    handleInputValue(direction);
     let count = 1;
     return direction === -1
       ? this.setState({
@@ -92,6 +92,7 @@ export default class App extends Component {
                       updateBasket={this.updateBasket}
                       shoppingBasket={this.state.shoppingBasket}
                       handleClick={this.handleClick}
+                      itemRemoved={this.state.itemRemoved}
                       item={item}
                     />
                   </Col>

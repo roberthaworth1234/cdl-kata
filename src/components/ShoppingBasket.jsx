@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Button } from "react-bootstrap";
 import { refPricingStructure } from "../assets/pricingStructure";
-import { calculateCost, tallyOccurences } from "../utils";
+import { calculateCost, tallyOccurences } from "../assets/utils";
 
 export default function ShoppingBasket({
   shoppingBasket,
@@ -30,12 +30,14 @@ export default function ShoppingBasket({
         <span className="sub-total">
           Sub-Total : £{(subTotal / 100).toFixed(2)}
         </span>
+
         {subTotal > calculatedCost ? (
           <span className="savings my-1">
             Your total savings today £
             {((subTotal - calculatedCost) / 100).toFixed(2)}
           </span>
         ) : null}
+
         <span className="total my-2">
           Total : £{(calculatedCost / 100).toFixed(2)}
         </span>
@@ -45,7 +47,7 @@ export default function ShoppingBasket({
 }
 
 const basketFunc = (shoppingBasket, itemsList, handleRemove) => {
-  /*tally occurences gives back an array containing two arrays, one containing the item i.e [A,B,C] and the other containing how many times it occured in the basket*/
+  /*tally occurences is a util function in the assets folder that gives back an array containing two arrays. One containing the item i.e [A,B,C] and the other containing how many times it occured in the basket*/
   const occurences = tallyOccurences(shoppingBasket, itemsList);
   return occurences[0].map((item, i) => {
     return itemsList.map((product, index) => {

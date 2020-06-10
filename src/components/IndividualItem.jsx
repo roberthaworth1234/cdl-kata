@@ -1,26 +1,26 @@
 import React, { Component } from "react";
+import { refPricingStructure } from "../assets/pricingStructure";
 import { Button } from "react-bootstrap";
 
 export default class IndividualItem extends Component {
   state = {
-    value: 0
+    inputValue: 0
   };
 
-  handleChange(event, arg) {
-    this.setState({ value: event });
+  handleChange(event) {
+    this.setState({ inputValue: +event });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.updateBasket(this.state.value, this.props.item.productCode);
+    this.props.updateBasket(this.state.inputValue, this.props.item.productCode);
   }
 
-  handleValue = arg => {
+  handleInputValue = arg => {
     this.setState(currentState => {
-      return { value: +currentState.value + arg };
+      return { inputValue: +currentState.inputValue + arg };
     });
   };
-
   render() {
     const { item, handleClick } = this.props;
     return (
@@ -36,19 +36,22 @@ export default class IndividualItem extends Component {
           <Button
             className="my-1"
             onClick={e => {
-              handleClick(-1, item.productCode, this.handleValue);
+              handleClick(-1, item.productCode, this.handleInputValue);
             }}
           >
             -
           </Button>
           <Button
-            className="mb-4"
+            className="mb-2"
             onClick={e => {
-              handleClick(+1, item.productCode, this.handleValue);
+              handleClick(+1, item.productCode, this.handleInputValue);
             }}
           >
             +
           </Button>
+          <span className="price">
+            {refPricingStructure[item.productCode].unitPrice}p
+          </span>
           <form
             onSubmit={e => {
               this.handleSubmit(e);
@@ -59,7 +62,7 @@ export default class IndividualItem extends Component {
               <input
                 className="w-25 align-items-center"
                 type="number"
-                value={this.state.value}
+                value={this.state.inputValue}
                 onChange={e => {
                   this.handleChange(e.target.value);
                 }}

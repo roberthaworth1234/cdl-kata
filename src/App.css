@@ -31,6 +31,13 @@ button {
 .img {
   height: 100px;
 }
+.price {
+  padding: 2px;
+  margin: 0px auto 10px;
+  width: 35px;
+  border: solid blue 2px;
+  border-radius: 10%;
+}
 
 /*Shopping basket and total below*/
 .savings {
