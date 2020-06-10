@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Rob Haworth CDL tech Kata.
+
+CDL Special Pricing Kata. I have created a pricing stucture and utility function in the assets folder. Tested with Jest, located in the Tests folder. Please review my code and I would be welcome to any contructive advice. Please run the react app locally with npm scripts below. Thank you for the opportunity.
 
 ## Available Scripts
 
@@ -45,6 +47,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ### Code Splitting
 
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
 ### Analyzing the Bundle Size
