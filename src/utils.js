@@ -2,11 +2,11 @@ exports.calculateCost = (array, pricingStructure) => {
   if (!array.length) {
     return 0;
   } else {
-    // if item is special priced it will be placed in this object with object entries of special deal
+    // if item is special priced it will be placed in this object with object entries of the special deal
     let specialPricedItems = {};
-    // if item is not spicial priced it will be added to the the cost below
+    // if item is single unit priced priced it will be added to the the cost below
     let totalCost = 0;
-    // an object to track the total number of each special item
+    // an object to track the total number of each special items
     let totalSpecials = {};
     array.forEach(item => {
       if (pricingStructure[item].hasOwnProperty("specialPrice")) {
@@ -25,14 +25,12 @@ exports.calculateCost = (array, pricingStructure) => {
       let remainder = totalSpecials[item] % specialPricedItems[item][0];
       if (totalSpecials[item] === 1) {
         totalCost += pricingStructure[item].unitPrice;
-      }
-      // checks if no remainder betweeen number of special items and how many times the special price is triggered. Multiply special price by how many times triggers and add to total cost.
-      else if (remainder === 0) {
+      } else if (remainder === 0) {
+      /* checks if no remainder betweeen number of special items and how many times the special price is triggered. Multiply special price by how many times triggers and add to total cost.*/
         let factor = totalSpecials[item] / specialPricedItems[item][0];
         totalCost += specialPricedItems[item][1] * factor;
-      }
-      // checks the remainder of special items.  adds unit priced of remainder and the number of triggered special priced items.
-      else if (remainder !== 0 && totalSpecials[item] > 1) {
+      } else if (remainder !== 0 && totalSpecials[item] > 1) {
+      /* if remainder it multiples the remainder by single unit price and the nearest whole number of special items * special item price */
         const numberOfSpecials = Math.floor(
           totalSpecials[item] / +specialPricedItems[item][0]
         );
